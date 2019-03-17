@@ -2,7 +2,7 @@
 layout: default
 title: sonoff-webthing
 fw_size: 361K
-fw_sha256sum: 0e133c3a8090d06a0ac7afa7f5d5a09d97cc7beab6bc2e6ab9e6953ed8e6a280
+fw_sha256sum: 1afea1e61f86a8d0d69d56f43fd6273ca7f162f0505488d6cc79953c28ae03f7
 ---
 
 # {{ page.title }}
