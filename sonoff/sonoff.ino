@@ -14,7 +14,6 @@
 // Others
 #include <DebounceEvent.h>
 
-#define DEBUG
 #include "log.h"
 #include "settings.h"
 
