@@ -24,6 +24,8 @@ It is **bleeding edge** technology and it (currently) only supports:
 
 :warning: This section is incomplete, sorry for that!
 
+### Installation
+
 1. Download the latest firmware in the [`docs/` folder](./docs/)
 2. Backup the current firmware on your device:
 
@@ -37,6 +39,34 @@ It is **bleeding edge** technology and it (currently) only supports:
     $ esptool.py -p /dev/usb erase_flash
     $ esptool.py -p /dev/usb write_flash -fm dout -fs 1MB 0x00000 sonoff-webthing-signed.bin
     ```
+
+### Setup
+
+Once the device is flashed with the `sonoff-webthing` firmware, replace the PCB
+in its enclosure and install the device as indicated in the iTead manual.
+
+When the device is powered on, the LED should blink slowly: the device is ready
+to be connected to your WiFi. Use a _SmartConfig_ application (like [this one
+for
+Android](https://play.google.com/store/apps/details?id=com.cmmakerclub.iot.esptouch&hl=en))
+to configure the device with your WiFi credentials.
+
+Once the LED is powered off, your device should be ready.
+
+### Manual usage
+
+The main button can be used as a regular switch.
+
+### Mozilla Things Gateway
+
+The device should automatically appear in the list of Thing devices.
+
+### Automatic update (OTA)
+
+Press the main button **10 times** to start the automatic update process. The
+LED should blink 5 times. If not, then retry. After that, the device will
+download the latest firmware hosted on GitHub. The LED might blink or might be
+on for some time, until the device restarts itself.
 
 ## Development
 
