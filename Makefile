@@ -8,6 +8,7 @@ LWIP_VARIANT = hb2n
 PROJECT_NAME = sonoff-webthing
 SRC_DIR = ./sonoff
 BUILD_DIR = ./build
+DOCS_DIR = ./docs
 SKETCH = $(SRC_DIR)/sonoff.ino
 DEFAULT_GOAL = release
 MAIN_NAME = sonoff-webthing
@@ -34,3 +35,11 @@ release: $(BUILD_DIR) $(ARDUINO_MK) $(BUILD_INFO_H) prebuild $(MAIN_EXE)
 debug: BUILD_EXTRA_FLAGS += -DDEBUG
 debug: release
 .PHONY: debug
+
+publish:
+	$(eval SHA := $(shell sha256sum $(SIGNED_BIN) | cut -d ' ' -f 1))
+	$(eval SIZE := $(shell ls -lh $(SIGNED_BIN) | cut -d ' ' -f 5))
+	@cp $(SIGNED_BIN) $(DOCS_DIR)
+	@sed -ri 's/^(fw_size:\s*)(.+)$$/\1$(SIZE)/' $(DOCS_DIR)/index.md
+	@sed -ri 's/^(fw_sha256sum:\s*)(.+)$$/\1$(SHA)/' $(DOCS_DIR)/index.md
+.PHONY: publish
