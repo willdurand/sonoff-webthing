@@ -1,5 +1,5 @@
-#ifndef SONOFF_LOG_H
-#define SONOFF_LOG_H
+#ifndef SONOFF_LOGGING_H
+#define SONOFF_LOGGING_H
 
 #ifdef DEBUG
 #define DEBUG_PRINT(message) Serial.print(message)

@@ -14,7 +14,7 @@
 // Others
 #include <DebounceEvent.h>
 
-#include "log.h"
+#include "logging.h"
 #include "settings.h"
 
 WebThingAdapter* adapter;
@@ -27,7 +27,7 @@ ThingProperty relayOn("on", "Whether the relay is turned on", BOOLEAN, "OnOffPro
 bool lastOn = false;
 
 // Prototypes
-void toggleRelay(bool on);
+void toggleRelay(bool enabled);
 void handleButton();
 void startRemoteUpdate();
 
@@ -116,10 +116,7 @@ void setup() {
   INFO_PRINTLN(relay.id);
   INFO_PRINTLN("");
 
-  button = new DebounceEvent(
-    BUTTON_PIN,
-    BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
-  );
+  button = new DebounceEvent(BUTTON_PIN, BUTTON_CONFIG);
 }
 
 void loop() {
