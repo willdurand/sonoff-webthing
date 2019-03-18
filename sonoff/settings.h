@@ -22,29 +22,23 @@
 #endif
 #define OTA_REMOTE_URL "http://williamdurand.fr/sonoff-webthing/" SIGNED_BIN_NAME
 
+#define RELAY_OFF LOW
+#define RELAY_ON HIGH
+#define LED_OFF HIGH
+#define LED_ON LOW
+
 #if defined(ARDUINO_ESP8266_WEMOS_D1MINI)
   #define BUTTON_PIN D5
   #define BUTTON_CONFIG BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP
 
   #define RELAY_PIN D6
-  #define RELAY_OFF LOW
-  #define RELAY_ON HIGH
-
-  // Built-in LED is active LOW
   #define LED_PIN LED_BUILTIN
-  #define LED_OFF HIGH
-  #define LED_ON LOW
 #else
   #define BUTTON_PIN 0
   #define BUTTON_CONFIG BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
 
   #define RELAY_PIN 12
-  #define RELAY_OFF LOW
-  #define RELAY_ON HIGH
-
   #define LED_PIN 13
-  #define LED_OFF HIGH
-  #define LED_ON LOW
 #endif
 
 #endif
