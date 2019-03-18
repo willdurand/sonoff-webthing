@@ -39,8 +39,8 @@
   #define BUTTON_CONFIG BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
 
   #define RELAY_PIN 12
-  #define RELAY_OFF HIGH
-  #define RELAY_ON LOW
+  #define RELAY_OFF LOW
+  #define RELAY_ON HIGH
 
   #define LED_PIN 13
   #define LED_OFF HIGH
