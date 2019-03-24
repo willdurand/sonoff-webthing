@@ -9,8 +9,8 @@ It is **bleeding edge** technology and it (currently) only supports:
 
 ## Features
 
-- WiFi configuration _via_ SmartConfig, tested with [this Android
-  app](https://play.google.com/store/apps/details?id=com.cmmakerclub.iot.esptouch&hl=en)
+- WiFi configuration _via_ SmartConfig, tested with
+  [this Android app](https://play.google.com/store/apps/details?id=com.cmmakerclub.iot.esptouch&hl=en)
 - 100% [Web Thing](https://iot.mozilla.org/things/) compliant
 - Support [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS)
 - Automatic signed firmware update
@@ -22,44 +22,69 @@ It is **bleeding edge** technology and it (currently) only supports:
 
 ## Usage
 
-:warning: This section is incomplete, sorry for that!
+This project is a fimrware, which require some hardware. You need a iTead sonoff
+compatible device. See the list of compatible devices at the top of this file.
+In this section, you will find instructions to install (flash) and use the
+`sonoff-webthing` firmware (this project).
 
 ### Installation
 
-1. Download the latest firmware in the [`docs/` folder](./docs/)
-2. Backup the current firmware on your device:
+You need [`esptool.py`](https://github.com/espressif/esptool), a FTDI and a USB
+cable. Flashing a device might be scary but it is usually straightforward and
+relatively simple, especially if you stay calm and focused.
 
-    ```
-    $ esptool.py --port /dev/usb read_flash 0x00000 0x100000 sonoff-orig.bin
-    ```
+:warning: DO NOT connect your device to mains AC (a.k.a. power coming from your
+outlet in your wall) when you want to flash it. This is not needed and EXTREMELY
+DANGEROUS.
 
-3. Flash your device:
+It is possible that your device requires some hardware preparation. See this
+wonderful
+[wiki page](https://github.com/arendst/Sonoff-Tasmota/wiki/Hardware-Preparation)
+to prepare your device. For example, the Sonoff Basic R2 can be flashed
+[by soldering a 4-pin header](https://twitter.com/couac/status/1106286305372184576).
 
-    ```
-    $ esptool.py -p /dev/usb erase_flash
-    $ esptool.py -p /dev/usb write_flash -fm dout -fs 1MB 0x00000 sonoff-webthing-signed.bin
-    ```
+0. Connect your FTDI to your device and your FTDI to your computer using a USB
+   cable
+1. Backup the current firmware on your device (only needed once):
+
+   ```
+   $ esptool.py --port /dev/usb read_flash 0x00000 0x100000 sonoff-orig.bin
+   ```
+
+1. Download the latest `sonoff-webthing` firmware located in the
+   [`docs/` folder](./docs/)
+1. Flash your device:
+
+   ```
+   $ esptool.py -p /dev/usb erase_flash
+   $ esptool.py -p /dev/usb write_flash -fm dout -fs 1MB 0x00000 sonoff-webthing-signed.bin
+   ```
+
+That's it! You can now unplug the FTDI from your device. Replace the PCB in its
+enclosure and install the device as indicated in the iTead manual. Ready to
+power your device on? Keep reading!
 
 ### Setup
 
-Once the device is flashed with the `sonoff-webthing` firmware, replace the PCB
-in its enclosure and install the device as indicated in the iTead manual.
-
 When the device is powered on, the LED should blink slowly: the device is ready
-to be connected to your WiFi. Use a _SmartConfig_ application (like [this one
-for
-Android](https://play.google.com/store/apps/details?id=com.cmmakerclub.iot.esptouch&hl=en))
+to be connected to your WiFi. Use a _SmartConfig_ application (like
+[this one for Android](https://play.google.com/store/apps/details?id=com.cmmakerclub.iot.esptouch&hl=en))
 to configure the device with your WiFi credentials.
 
-Once the LED is powered off, your device should be ready.
+Once the LED is powered off, your device is fully operational. Some devices like
+the Sonoff Basic (R2) can be used manually but not all of them. The best way to
+make sure your device is working will be to control it _via_ the Mozilla Things
+Gateway.
 
 ### Manual usage
 
-The main button can be used as a regular switch.
+- Sonoff Basic (R2): the button can be used as a regular on/off switch.
 
 ### Mozilla Things Gateway
 
-The device should automatically appear in the list of Thing devices.
+The device should automatically appear in the list of Thing devices. If not, try
+to reboot it or you can perform a hard reset by pressing the main button for
+more than 5 seconds and then releasing it.
 
 ### Automatic update (OTA)
 
@@ -72,11 +97,12 @@ on for some time, until the device restarts itself.
 
 :warning: This section is incomplete, sorry for that! I use a `Makefile` and the
 command line to build firmware, not the Arduino IDE but this project can be
-opened, compiled and flashed _via_ the Arduino IDE. Please follow [this
-documentation](https://github.com/arendst/Sonoff-Tasmota/wiki/Arduino-IDE#configure-arduino-ide)
+opened, compiled and flashed _via_ the Arduino IDE. Please follow
+[this documentation](https://github.com/arendst/Sonoff-Tasmota/wiki/Arduino-IDE#configure-arduino-ide)
 to configure the Arduino IDE.
 
-:warning: The `webthing-arduino` library requires a change to avoid [this
+:warning: This project requires the latest `master` version of
+[`webthing-arduino`](https://github.com/mozilla-iot/webthing-arduino) to avoid [this
 issue](https://github.com/mozilla-iot/webthing-arduino/issues/59).
 
 Run `make debug` to build a development firmware and `make release` to build a
