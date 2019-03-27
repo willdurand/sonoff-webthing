@@ -22,7 +22,7 @@ It is **bleeding edge** technology and it (currently) only supports:
 
 ## Usage
 
-This project is a fimrware, which require some hardware. You need a iTead sonoff
+This project is a firmware, which require some hardware. You need a iTead sonoff
 compatible device. See the list of compatible devices at the top of this file.
 In this section, you will find instructions to install (flash) and use the
 `sonoff-webthing` firmware (this project).
@@ -64,7 +64,7 @@ That's it! You can now unplug the FTDI from your device. Replace the PCB in its
 enclosure and install the device as indicated in the iTead manual. Ready to
 power your device on? Keep reading!
 
-### Setup
+### Configuration
 
 When the device is powered on, the LED should blink slowly: the device is ready
 to be connected to your WiFi. Use a _SmartConfig_ application (like
