@@ -13,7 +13,7 @@ It is **bleeding edge** technology and it (currently) only supports:
   [this Android app](https://play.google.com/store/apps/details?id=com.cmmakerclub.iot.esptouch&hl=en)
 - 100% [Web Thing](https://iot.mozilla.org/things/) compliant
 - Support [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS)
-- Automatic signed firmware update
+- Automatic ~~signed~~ firmware update
   ([OTA](https://en.wikipedia.org/wiki/Over-the-air_programming)) by
   short-pressing the main button 10 times
 - Main button can be used to turn on/off the switch
